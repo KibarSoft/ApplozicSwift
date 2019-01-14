@@ -12,6 +12,21 @@ import AVFoundation
 import Applozic
 import SafariServices
 
+public extension Notification.Name {
+    static var ALKConversationViewWillAppear: Notification.Name {
+        return .init(rawValue: "Kibarsoft.Applozic.ALKConversationViewWillAppear")
+    }
+    
+    static var ALKConversationViewDidAppear: Notification.Name {
+        return .init(rawValue: "Kibarsoft.Applozic.ALKConversationViewDidAppear")
+    }
+    
+    static var ALKConversationViewDidLoad: Notification.Name {
+        return .init(rawValue: "Kibarsoft.Applozic.ALKConversationViewDidLoad")
+    }
+}
+
+
 open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
     var timerTask = Timer();
@@ -335,14 +350,18 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         contentOffsetDictionary = Dictionary<NSObject,AnyObject>()
         subscribeChannelToMqtt()
         print("id: ", viewModel.messageModels.first?.contactId as Any)
+        
+        NotificationCenter.default.post(name: .ALKConversationViewWillAppear, object: nil)
     }
 
     override open func viewDidAppear(_ animated: Bool) {
+        NotificationCenter.default.post(name: .ALKConversationViewDidAppear, object: nil)
     }
 
     override open func viewDidLoad() {
         super.viewDidLoad()
         setupConstraints()
+        NotificationCenter.default.post(name: .ALKConversationViewDidLoad, object: nil)
     }
 
     override open func viewDidLayoutSubviews() {
