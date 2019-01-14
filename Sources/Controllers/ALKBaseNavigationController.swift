@@ -12,7 +12,8 @@ public class ALKBaseNavigationViewController: UINavigationController {
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        setNeedsStatusBarAppearanceUpdate()
+        //Keep the default application status bar
+        //setNeedsStatusBarAppearanceUpdate()
     }
     
     override public func didReceiveMemoryWarning() {
@@ -20,8 +21,10 @@ public class ALKBaseNavigationViewController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
+    //Keep the default application status bar
+    /*
     override public var preferredStatusBarStyle: UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
-    }
+    }*/
     
 }
