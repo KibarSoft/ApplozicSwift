@@ -71,11 +71,16 @@ open class ALKChatBar: UIView, Localizable {
         }
     }
 
-    open let textView: ALKChatBarTextView = {
+    lazy open var textView: ALKChatBarTextView = {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 4.0
         let tv = ALKChatBarTextView()
-        tv.setBackgroundColor(UIColor.color(.none))
+        //tv.setBackgroundColor(UIColor.color(.none))
+        tv.setBackgroundColor(self.configuration.chatMessageBackgroundColor ?? UIColor.color(.none))
+        tv.textColor = self.configuration.chatMessageTextColor ?? .black
+        if let _ = self.configuration.chatMessageTextFont {
+            tv.font = self.configuration.chatMessageTextFont
+        }
         tv.scrollsToTop = false
         tv.autocapitalizationType = .sentences
         tv.accessibilityIdentifier = "chatTextView"
@@ -255,7 +260,8 @@ open class ALKChatBar: UIView, Localizable {
         micButton.setAudioRecDelegate(recorderDelegate: self)
         soundRec.setAudioRecViewDelegate(recorderDelegate: self)
         textView.delegate = self
-        backgroundColor = .background(.grayEF)
+        //backgroundColor = .background(.grayEF)
+        backgroundColor = self.configuration.chatBarBackgroundColor ?? .background(.grayEF)
         translatesAutoresizingMaskIntoConstraints = false
 
         plusButton.addTarget(self, action: #selector(tapped(button:)), for: .touchUpInside)

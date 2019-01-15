@@ -100,19 +100,24 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         }
     }
 
-      var tableView : UITableView = {
+    lazy var tableView : UITableView = {
         let tv = UITableView(frame: .zero, style: .grouped)
         tv.separatorStyle   = .none
         tv.allowsSelection  = false
         tv.clipsToBounds    = true
         tv.keyboardDismissMode = UIScrollViewKeyboardDismissMode.onDrag
         tv.accessibilityIdentifier = "InnerChatScreenTableView"
+        if let _ = self.configuration.conversationScreenBackgroundImage {
+            let imageView = UIImageView(image: self.configuration.conversationScreenBackgroundImage)
+            tv.backgroundView = imageView
+        }
         return tv
     }()
 
-    fileprivate let titleButton : UIButton = {
+    lazy fileprivate var titleButton : UIButton = {
         let titleButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        titleButton.titleLabel?.font  = UIFont.boldSystemFont(ofSize: 17.0)
+        titleButton.titleLabel?.font  =
+            self.configuration.conversationScreenTitleFont ?? UIFont.boldSystemFont(ofSize: 17.0)
         return titleButton
     }()
 
