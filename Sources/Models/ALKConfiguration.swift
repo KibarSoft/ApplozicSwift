@@ -106,5 +106,13 @@ public extension ALKConfiguration {
     /// Navigation bar's title font. It will be used in all the
     /// ViewControllers where navigation bar is visible.
     /// If nil, the font attribute WON'T be added to navigation title text attributes
-    public var navigationBarTitleFont: UIFont? = nil
+    public var navigationBarTitleFont: UIFont? = nil {
+        get {
+            return self.navigationBarTitleFont
+        }
+        
+        set(newValue) {
+            self.navigationBarTitleFont = newValue
+        }
+    }
 }
