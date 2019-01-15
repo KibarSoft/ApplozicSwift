@@ -101,8 +101,29 @@ public struct ALKConfiguration {
     public init() { }
     
     // MARK: - Kibarsoft properties -
+    
     /// Navigation bar's title font. It will be used in all the
     /// ViewControllers where navigation bar is visible.
     /// If nil, the font attribute WON'T be added to navigation title text attributes
     public var navigationBarTitleFont: UIFont? = nil
+    
+    // MARK: - Conversation Screen -
+    
+    /// Chat bar's background color. The Library default will be used if nil
+    public var chatBarBackgroundColor: UIColor? = nil
+    
+    /// Chat bar's message text area background color. The Library default will be used if nil
+    public var chatMessageBackgroundColor: UIColor? = nil
+    
+    /// Chat bar's message text area text color. The Library default will be used if nil
+    public var chatMessageTextColor: UIColor? = nil
+    
+    /// Chat bar's message text area text font. The Library default will be used if nil
+    public var chatMessageTextFont: UIFont? = nil
+    
+    /// Chat screen title font (for titleButton). The Library default will be used if nil
+    public var conversationScreenTitleFont: UIFont? = nil
+    
+    /// Chat screen backgroundImage. WON'T be used if nil
+    public var conversationScreenBackgroundImage: UIImage? = nil
 }
