@@ -99,20 +99,10 @@ public struct ALKConfiguration {
     public var messageMetadata : [AnyHashable : Any]?
 
     public init() { }
-}
-
-//Kibarsoft
-public extension ALKConfiguration {
+    
+    // MARK: - Kibarsoft properties -
     /// Navigation bar's title font. It will be used in all the
     /// ViewControllers where navigation bar is visible.
     /// If nil, the font attribute WON'T be added to navigation title text attributes
-    public var navigationBarTitleFont: UIFont? {
-        get {
-            return self.navigationBarTitleFont
-        }
-        
-        set(newValue) {
-            self.navigationBarTitleFont = newValue
-        }
-    }
+    public var navigationBarTitleFont: UIFont? = nil
 }
