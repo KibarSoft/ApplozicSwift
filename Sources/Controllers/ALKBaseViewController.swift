@@ -30,7 +30,7 @@ open class ALKBaseViewController: UIViewController, ALKConfigurable {
         self.navigationController?.navigationBar.barTintColor = configuration.navigationBarBackgroundColor
         self.navigationController?.navigationBar.tintColor = configuration.navigationBarItemColor
 
-        let titleTextAttributes = [NSAttributedStringKey.foregroundColor:configuration.navigationBarTitleColor]
+        var titleTextAttributes = [NSAttributedStringKey.foregroundColor:configuration.navigationBarTitleColor]
         if let _ = configuration.navigationBarTitleFont {
             titleTextAttributes[NSAttributedString.Key.font] = configuration.navigationBarTitleFont
         }
