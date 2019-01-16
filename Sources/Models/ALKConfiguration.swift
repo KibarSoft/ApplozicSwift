@@ -112,6 +112,12 @@ public struct ALKConfiguration {
     /// Chat bar's background color. The Library default will be used if nil
     public var chatBarBackgroundColor: UIColor? = nil
     
+    /// Chat bar's buttons tint color. The Library default will be used if nil
+    public var chatBarAttachmentButtonsTintColor: UIColor? = nil
+    
+    /// Chat bar's separator (between message area & send Button) color. The Library default will be used if nil
+    public var chatBarSeparatorLineColor: UIColor? = nil
+    
     /// Chat bar's message text area background color. The Library default will be used if nil
     public var chatMessageBackgroundColor: UIColor? = nil
     
@@ -125,5 +131,6 @@ public struct ALKConfiguration {
     public var conversationScreenTitleFont: UIFont? = nil
     
     /// Chat screen backgroundImage. WON'T be used if nil
-    public var conversationScreenBackgroundImage: UIImage? = nil
+    public var conversationScreenBackgroundImage: UIImage? = nil            
+    
 }

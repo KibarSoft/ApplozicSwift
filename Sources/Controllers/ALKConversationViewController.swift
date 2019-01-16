@@ -584,7 +584,8 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
 
     private func prepareChatBar() {
         // Update ChatBar's top view which contains send button and the text view.
-        chatBar.grayView.backgroundColor = configuration.backgroundColor
+        //chatBar.grayView.backgroundColor = configuration.backgroundColor
+        chatBar.grayView.backgroundColor = configuration.chatBarBackgroundColor    //Kibarsoft
 
         // Update background view's color which contains all the attachment options.
         chatBar.bottomGrayView.backgroundColor = configuration.chatBarAttachmentViewBackgroundColor

@@ -57,7 +57,8 @@ open class AudioRecordButton: UIButton{
         
         self.addConstraints([NSLayoutConstraint(item: recordButton, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: 0)])
         
-        var image = UIImage(named: "microphone", in: Bundle.applozic, compatibleWith: nil)
+        //var image = UIImage(named: "microphone", in: Bundle.applozic, compatibleWith: nil)
+        var image = UIImage(named: "microphone", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)  //To enable TintColor
         
         if #available(iOS 9.0, *) {
             image = image?.imageFlippedForRightToLeftLayoutDirection()

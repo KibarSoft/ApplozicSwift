@@ -75,7 +75,7 @@ open class ALKChatBar: UIView, Localizable {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 4.0
         let tv = ALKChatBarTextView()
-        //tv.setBackgroundColor(UIColor.color(.none))
+        
         tv.setBackgroundColor(self.configuration.chatMessageBackgroundColor ?? UIColor.color(.none))
         tv.textColor = self.configuration.chatMessageTextColor ?? .black
         if let _ = self.configuration.chatMessageTextFont {
@@ -84,11 +84,13 @@ open class ALKChatBar: UIView, Localizable {
         tv.scrollsToTop = false
         tv.autocapitalizationType = .sentences
         tv.accessibilityIdentifier = "chatTextView"
-        tv.typingAttributes = [NSAttributedStringKey.paragraphStyle.rawValue: style, NSAttributedStringKey.font.rawValue: UIFont.font(.normal(size: 16.0))]
+        
+        //Kibarsoft: stop typing attributes to allow font & text color changes
+        //tv.typingAttributes = [NSAttributedStringKey.paragraphStyle.rawValue: style, NSAttributedStringKey.font.rawValue: UIFont.font(.normal(size: 16.0))]
         return tv
     }()
 
-    open var frameView: UIImageView = {
+    lazy open var frameView: UIImageView = {
 
         let view = UIImageView()
         view.backgroundColor = .clear
@@ -107,8 +109,15 @@ open class ALKChatBar: UIView, Localizable {
     lazy open var placeHolder: UITextView = {
 
         let view = UITextView()
-        view.setFont(UIFont.font(.normal(size: 14)))
+        //view.setFont(UIFont.font(.normal(size: 14)))
+        if let _ = self.configuration.chatMessageTextFont {            
+            view.setFont(self.configuration.chatMessageTextFont!)
+        } else {
+          view.setFont(UIFont.font(.normal(size: 14)))
+        }
         view.setTextColor(.color(Color.Text.gray9B))
+        
+        
         view.text = localizedString(forKey: "ChatHere", withDefaultValue: SystemMessage.Information.ChatHere, fileName: configuration.localizedStringFileName)
         view.isUserInteractionEnabled = false
         view.isScrollEnabled = false
@@ -117,57 +126,81 @@ open class ALKChatBar: UIView, Localizable {
         return view
     }()
 
-    open var micButton: AudioRecordButton = {
+    lazy open var micButton: AudioRecordButton = {
         let button = AudioRecordButton(frame: CGRect())
         button.layer.masksToBounds = true
         button.accessibilityIdentifier = "MicButton"
+        
+        //Kibarsoft
+        button.tintColor = configuration.chatBarAttachmentButtonsTintColor
         return button
     }()
 
-    open var photoButton: UIButton = {
+    lazy open var photoButton: UIButton = {
 
         let bt = UIButton(type: .custom)
-        var image = UIImage(named: "photo", in: Bundle.applozic, compatibleWith: nil)
+        var image = UIImage(named: "photo", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         image = image?.imageFlippedForRightToLeftLayoutDirection()
         bt.setImage(image, for: .normal)
+        
+        //Kibarsoft
+        bt.tintColor = configuration.chatBarAttachmentButtonsTintColor
         return bt
     }()
 
-    open var galleryButton: UIButton = {
+    lazy open var galleryButton: UIButton = {
         let button = UIButton(type: .custom)
-        var image = UIImage(named: "gallery", in: Bundle.applozic, compatibleWith: nil)
+        var image = UIImage(named: "gallery", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         image = image?.imageFlippedForRightToLeftLayoutDirection()
         button.setImage(image, for: .normal)
+        
+        //Kibarsoft
+        button.tintColor = configuration.chatBarAttachmentButtonsTintColor
         return button
     }()
 
-    open var plusButton: UIButton = {
+    lazy open var plusButton: UIButton = {
 
         let bt = UIButton(type: .custom)
-        var image = UIImage(named: "icon_more_menu", in: Bundle.applozic, compatibleWith: nil)
+        var image = UIImage(named: "icon_more_menu", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         image = image?.imageFlippedForRightToLeftLayoutDirection()
         bt.setImage(image, for: .normal)
+        
+        //Kibarsoft
+        bt.tintColor = configuration.chatBarAttachmentButtonsTintColor
         return bt
     }()
 
-    open var locationButton: UIButton = {
+    lazy open var locationButton: UIButton = {
 
         let bt = UIButton(type: .custom)
-        var image = UIImage(named: "location_new", in: Bundle.applozic, compatibleWith: nil)
+        var image = UIImage(named: "location_new", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         image = image?.imageFlippedForRightToLeftLayoutDirection()
         bt.setImage(image, for: .normal)
+        
+        //Kibarsoft
+        bt.tintColor = configuration.chatBarAttachmentButtonsTintColor
         return bt
     }()
 
-    open var chatButton: UIButton = {
+    lazy open var chatButton: UIButton = {
         let button = UIButton(type: .custom)
-        var image = UIImage(named: "showKeyboard", in: Bundle.applozic, compatibleWith: nil)
+        //var image = UIImage(named: "showKeyboard", in: Bundle.applozic, compatibleWith: nil)
+        var image = UIImage(named: "showKeyboard", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
+        
+        //Kibarsoft
+        button.tintColor = configuration.chatBarAttachmentButtonsTintColor
         return button
     }()
 
-    open var lineImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "line", in: Bundle.applozic, compatibleWith: nil))
+    lazy open var lineImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "line", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate))
+        
+        //KibarSoft
+        if let _ = configuration.chatBarSeparatorLineColor {
+            imageView.tintColor = configuration.chatBarSeparatorLineColor
+        }
         return imageView
     }()
 
@@ -175,31 +208,40 @@ open class ALKChatBar: UIView, Localizable {
         let bt = UIButton(type: .custom)
         var image = configuration.sendMessageIcon
         image = image?.imageFlippedForRightToLeftLayoutDirection()
-        bt.setImage(image, for: .normal)
+        //bt.setImage(image, for: .normal)
+        bt.setImage(image?.withRenderingMode(.alwaysTemplate), for: .normal)
         bt.accessibilityIdentifier = "sendButton"
 
+        //Kibarsoft
+        bt.tintColor = configuration.chatBarAttachmentButtonsTintColor
         return bt
     }()
 
-    open var lineView: UIView = {
+    lazy open var lineView: UIView = {
         let view = UIView()
         let layer = view.layer
         view.backgroundColor = UIColor(red: 217.0/255.0, green: 217.0/255.0, blue: 217.0/255.0, alpha: 1.0)
+        
         return view
     }()
 
-    open var bottomGrayView: UIView = {
+    lazy open var bottomGrayView: UIView = {
         let view = UIView()
-        view.setBackgroundColor(.background(.grayEF))
+        //view.setBackgroundColor(.background(.grayEF))
+        view.setBackgroundColor(self.configuration.chatBarBackgroundColor ?? .background(.grayEF))
+        
         view.isUserInteractionEnabled = false
         return view
     }()
 
-    open var videoButton: UIButton = {
+    lazy open var videoButton: UIButton = {
         let button = UIButton(type: .custom)
-        var image = UIImage(named: "video", in: Bundle.applozic, compatibleWith: nil)
+        var image = UIImage(named: "video", in: Bundle.applozic, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate)
         image = image?.imageFlippedForRightToLeftLayoutDirection()
         button.setImage(image, for: .normal)
+        
+        //Kibarsoft
+        button.tintColor = configuration.chatBarAttachmentButtonsTintColor
         return button
     }()
 
@@ -421,9 +463,10 @@ open class ALKChatBar: UIView, Localizable {
         poweredByMessageLabel.topAnchor.constraint(equalTo: headerView.bottomAnchor).isActive = true
 
         textView.trailingAnchor.constraint(equalTo: lineImageView.leadingAnchor).isActive = true
-
+        
         textViewHeighConstrain = textView.heightAnchor.constraint(equalToConstant: textViewHeigh)
         textViewHeighConstrain?.isActive = true
+        
 
         placeHolder.heightAnchor.constraint(equalToConstant: 35).isActive = true
         placeHolder.centerYAnchor.constraint(equalTo: textView.centerYAnchor, constant: 0).isActive = true
