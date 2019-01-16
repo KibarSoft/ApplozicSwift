@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Applozic
 public enum ALKMessageStyle {
 
     public static var displayName = Style(
@@ -52,7 +53,7 @@ public enum ALKMessageStyle {
             self.widthPadding = 10.0
         }
     }
-
-    public static var sentBubble = Bubble(color: UIColor(netHex: 0xF1F0F0), style: .edge)
-    public static var receivedBubble = Bubble(color: UIColor(netHex: 0xF1F0F0), style: .edge)
+    
+    public static var sentBubble = Bubble(color: ALApplozicSettings.getSendMsgColor() ?? UIColor(netHex: 0xF1F0F0), style: .round)
+    public static var receivedBubble = Bubble(color: ALApplozicSettings.getReceiveMsgColor() ?? UIColor(netHex: 0xF1F0F0), style: .round)
 }
