@@ -58,7 +58,15 @@ final class ALKChatCell: MGSwipeTableCell {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
-        label.font = Font.bold(size: 14.0).font()
+        //label.font = Font.bold(size: 14.0).font()
+        
+        //Kibarsoft
+        if let _ = ALApplozicSettings.getFontFace() {
+            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 14.0)!)
+        } else {
+            label.font = Font.bold(size: 14.0).font()
+        }
+        
         label.textColor = .text(.black00)
         return label
     }()
@@ -67,7 +75,14 @@ final class ALKChatCell: MGSwipeTableCell {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
-        label.font = Font.normal(size: 14.0).font()
+        //label.font = Font.normal(size: 14.0).font()
+        //Kibarsoft
+        if let _ = ALApplozicSettings.getFontFace() {
+            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 14.0)!)
+        } else {
+            label.font = Font.normal(size: 14.0).font()
+        }
+        
         label.textColor = UIColor(netHex: 0x9B9B9B)
         return label
     }()
@@ -108,7 +123,15 @@ final class ALKChatCell: MGSwipeTableCell {
         label.text = "0"
         label.textAlignment = .center
         label.setTextColor(.white)
-        label.setFont(UIFont.font(.normal(size: 9.0)))
+        //label.setFont(UIFont.font(.normal(size: 9.0)))
+        
+        //Kibarsoft
+        if let _ = ALApplozicSettings.getFontFace() {
+            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 9.0)!)
+        } else {
+            label.setFont(UIFont.font(.normal(size: 9.0)))
+        }
+        
 
         return label
     }()
@@ -117,7 +140,15 @@ final class ALKChatCell: MGSwipeTableCell {
         let label = UILabel()
         label.textAlignment = .right
         label.numberOfLines = 1
-        label.font = Font.normal(size: 14.0).font()
+        //label.font = Font.normal(size: 14.0).font()
+        
+        //Kibarsoft
+        if let _ = ALApplozicSettings.getFontFace() {
+            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 14.0)!)
+        } else {
+          label.font = Font.normal(size: 14.0).font()
+        }
+        
         label.textColor = UIColor(netHex: 0x9B9B9B)
         return label
     }()
@@ -136,7 +167,15 @@ final class ALKChatCell: MGSwipeTableCell {
         label.textAlignment = .center
         label.numberOfLines = 1
         label.clipsToBounds = true
-        label.font = Font.bold(size: 20.0).font()
+        //label.font = Font.bold(size: 20.0).font()
+        
+        //Kibarsoft
+        if let _ = ALApplozicSettings.getFontFace() {
+            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 20.0)!)
+        } else {
+          label.font = Font.bold(size: 20.0).font()
+        }
+        
         return label
     }()
     
