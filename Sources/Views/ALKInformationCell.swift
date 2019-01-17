@@ -9,6 +9,7 @@
 
 import Foundation
 import UIKit
+import Applozic
 
 final class ALKInformationCell: UITableViewCell {
 
@@ -16,7 +17,15 @@ final class ALKInformationCell: UITableViewCell {
 
     fileprivate var messageView: UITextView = {
         let tv = UITextView()
-        tv.setFont(UIFont.font(.bold(size: 12.0)))
+        //tv.setFont(UIFont.font(.bold(size: 12.0)))
+        
+        //Kibarsoft
+        if let _ = ALApplozicSettings.getFontFace() {
+            tv.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 12.0)!)
+        } else {
+            tv.setFont(UIFont.font(.bold(size: 12.0)))
+        }
+        
         tv.isEditable = false
         tv.backgroundColor = .clear
         tv.isSelectable = false
@@ -57,9 +66,19 @@ final class ALKInformationCell: UITableViewCell {
             
             let nomalizedMessage = message.replacingOccurrences(of: " ", with: "d")
             
+            //Kibarsoft
+            var targetFont: UIFont
+            if let _ = ALApplozicSettings.getFontFace() {
+                targetFont = UIFont(name: ALApplozicSettings.getFontFace()!, size: 12.0)!
+            } else {
+                targetFont = UIFont.font(.bold(size: 12.0))
+            }
+            
             let rect = (nomalizedMessage as NSString).boundingRect(with: CGSize.init(width: widthNoPadding, height: CGFloat.greatestFiniteMagnitude),
                                                                    options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                                                                   attributes: [NSAttributedStringKey.font:UIFont.font(.bold(size: 12))],
+                                                                   //attributes: [NSAttributedStringKey.font:UIFont.font(.bold(size: 12))],
+                                                                   attributes: [NSAttributedStringKey.font:targetFont],  //Kibarsoft
+                
                                                                    context: nil)
             messageHeigh = rect.height + 17
             

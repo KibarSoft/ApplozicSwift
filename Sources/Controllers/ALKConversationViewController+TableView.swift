@@ -360,7 +360,15 @@ extension ALKConversationViewController: UITableViewDelegate, UITableViewDataSou
         dateView.dateView.backgroundColor = configuration.conversationViewCustomCellBackgroundColor
         dateView.dateLabel.backgroundColor = configuration.conversationViewCustomCellBackgroundColor
         dateView.dateLabel.textColor = configuration.conversationViewCustomCellTextColor
-
+        
+        //Kibarsoft
+        if let _ = ALApplozicSettings.getFontFace() {
+            //The font size here matches nib file
+            dateView.dateLabel.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 12.0)!)
+        }
+        
+        
+        
         // Set date text
         dateView.setupDate(withDateFormat: date.stringCompareCurrentDate())
         return dateView
