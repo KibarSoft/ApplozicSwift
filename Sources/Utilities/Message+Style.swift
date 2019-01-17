@@ -11,22 +11,26 @@ import Applozic
 public enum ALKMessageStyle {
 
     public static var displayName = Style(
-        font: UIFont.font(.normal(size: 14)),
+        //font: UIFont.font(.normal(size: 14)),
+        font: UIFont(name: ALApplozicSettings.getFontFace()!, size: 14) ?? UIFont.font(.normal(size: 14)),  //Kibarsoft
         text: .text(.gray9B)
     )
 
     public static var message = Style(
-        font: UIFont.font(.normal(size: 14)),
+        //font: UIFont.font(.normal(size: 14)),
+        font: UIFont(name: ALApplozicSettings.getFontFace()!, size: 14) ?? UIFont.font(.normal(size: 14)),   //Kibarsoft
         text: .text(.black00)
     )
 
     public static var playTime = Style(
-        font: UIFont.font(.normal(size: 16)),
+        //font: UIFont.font(.normal(size: 16)),
+        font: UIFont(name: ALApplozicSettings.getFontFace()!, size: 14) ?? UIFont.font(.normal(size: 14)),   //Kibarsoft
         text: .text(.black00)
     )
 
     public static var time = Style(
-        font: UIFont.font(.italic(size: 12)),
+        //font: UIFont.font(.italic(size: 12)),
+        font: UIFont(name: ALApplozicSettings.getFontFace()!, size: 14) ?? UIFont.font(.normal(size: 14)),   //Kibarsoft
         text: .text(.grayCC)
     )
 
