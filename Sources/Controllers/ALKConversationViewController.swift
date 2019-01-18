@@ -100,7 +100,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         }
     }
 
-    lazy var tableView : UITableView = {
+    lazy open var tableView : UITableView = {
         let tv = UITableView(frame: .zero, style: .grouped)
         tv.separatorStyle   = .none
         tv.allowsSelection  = false
