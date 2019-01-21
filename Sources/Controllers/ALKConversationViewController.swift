@@ -69,7 +69,8 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
     private var leftMoreBarConstraint: NSLayoutConstraint?
     private var typingNoticeViewHeighConstaint: NSLayoutConstraint?
     var isJustSent: Bool = false
-
+    open var tableTopConstraint: NSLayoutConstraint?   //Kibarsoft
+    
     //MQTT connection retry
     fileprivate var mqttRetryCount = 0
     fileprivate var maxMqttRetryCount = 3
@@ -476,7 +477,14 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         templateView?.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -10.0).isActive = true
         templateView?.heightAnchor.constraint(equalToConstant: 45).isActive = true
 
-        tableView.topAnchor.constraint(equalTo: contextTitleView.bottomAnchor).isActive = true
+        
+        
+        //Kibarsoft
+        
+        
+        //tableView.topAnchor.constraint(equalTo: contextTitleView.bottomAnchor).isActive = true
+        tableTopConstraint = tableView.topAnchor.constraint(equalTo: contextTitleView.bottomAnchor)
+        tableTopConstraint?.isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: (templateView != nil) ? templateView!.topAnchor:typingNoticeView.topAnchor).isActive = true
