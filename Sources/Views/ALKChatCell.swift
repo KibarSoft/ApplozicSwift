@@ -183,7 +183,7 @@ open class ALKChatCell: MGSwipeTableCell {
 
     weak var chatCellDelegate: ALKChatCellDelegate?
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
         voipButton.isHidden = true
@@ -195,7 +195,7 @@ open class ALKChatCell: MGSwipeTableCell {
         //favoriteButton.removeTarget(self, action:  #selector(favoriteTapped(button:)), for: .touchUpInside)
     }
 
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    open override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
 
         guard let _ = viewModel else {
@@ -211,7 +211,7 @@ open class ALKChatCell: MGSwipeTableCell {
         badgeNumberView.setBackgroundColor(.background(.main))
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
+    open override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         guard let _ = viewModel else {
@@ -458,7 +458,7 @@ open class ALKChatCell: MGSwipeTableCell {
 //        comingSoonDelegate?.makeToast(SystemMessage.ComingSoon.Favorite, duration: 1.0, position: .center)
     }
 
-    override func setEditing(_ editing: Bool, animated: Bool) {
+    open override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
     }
 
