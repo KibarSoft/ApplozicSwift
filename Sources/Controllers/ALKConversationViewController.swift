@@ -108,10 +108,6 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         tv.clipsToBounds    = true
         tv.keyboardDismissMode = UIScrollViewKeyboardDismissMode.onDrag
         tv.accessibilityIdentifier = "InnerChatScreenTableView"
-        if let _ = self.configuration.conversationScreenBackgroundImage {
-            let imageView = UIImageView(image: self.configuration.conversationScreenBackgroundImage)
-            tv.backgroundView = imageView
-        }
         return tv
     }()
 
@@ -134,6 +130,17 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
     open var backgroundView: UIView = {
         let view = UIView(frame: CGRect.zero)
         view.backgroundColor = UIColor.white
+        
+        //Kibarsoft
+        if let _ = self.configuration.conversationScreenBackgroundImage {
+            let imageView = UIImageView(image: self.configuration.conversationScreenBackgroundImage)
+            imageView.frame = view.bounds
+            imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight, .flexibleRightMargin, .flexibleBottomMargin]
+            view.autoresizesSubviews = true
+            
+            view.addSubview(imageView)
+        }
+        
         return view
     }()
 
@@ -477,11 +484,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         templateView?.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -10.0).isActive = true
         templateView?.heightAnchor.constraint(equalToConstant: 45).isActive = true
 
-        
-        
         //Kibarsoft
-        
-        
         //tableView.topAnchor.constraint(equalTo: contextTitleView.bottomAnchor).isActive = true
         tableTopConstraint = tableView.topAnchor.constraint(equalTo: contextTitleView.bottomAnchor)
         tableTopConstraint?.isActive = true
