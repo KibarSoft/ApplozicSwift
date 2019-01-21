@@ -41,7 +41,7 @@ protocol ALKChatCellDelegate: class {
     func chatCell(cell: ALKChatCell, action: ALKChatCellAction, viewModel: ALKChatViewModelProtocol)
 }
 
-final class ALKChatCell: MGSwipeTableCell {
+open class ALKChatCell: MGSwipeTableCell {
 
     open var avatarImageView: UIImageView = {
         let imv = UIImageView()
