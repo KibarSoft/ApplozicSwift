@@ -43,7 +43,7 @@ protocol ALKChatCellDelegate: class {
 
 final class ALKChatCell: MGSwipeTableCell {
 
-    private var avatarImageView: UIImageView = {
+    open var avatarImageView: UIImageView = {
         let imv = UIImageView()
         imv.contentMode = .scaleAspectFill
         imv.clipsToBounds = true
@@ -54,7 +54,7 @@ final class ALKChatCell: MGSwipeTableCell {
         return imv
     }()
 
-    private var nameLabel: UILabel = {
+    open var nameLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
@@ -71,7 +71,7 @@ final class ALKChatCell: MGSwipeTableCell {
         return label
     }()
 
-    private var locationLabel: UILabel = {
+    open var locationLabel: UILabel = {
         let label = UILabel()
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
@@ -87,14 +87,14 @@ final class ALKChatCell: MGSwipeTableCell {
         return label
     }()
 
-    private var lineView: UIView = {
+    open var lineView: UIView = {
         let view = UIView()
         let layer = view.layer
         view.backgroundColor = UIColor.init(red: 200.0/255.0, green: 199.0/255.0, blue: 204.0/255.0, alpha: 0.33)
         return view
     }()
 
-    private lazy var voipButton: UIButton = {
+    open lazy var voipButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setImage(UIImage(named: "icon_menu_dial_on"), for: .normal)
         bt.setImage(UIImage(named: "icon_call_disable"), for: .disabled)
@@ -102,7 +102,7 @@ final class ALKChatCell: MGSwipeTableCell {
         return bt
     }()
 
-    private lazy var favoriteButton: UIButton = {
+    open lazy var favoriteButton: UIButton = {
         let bt = UIButton(type: .custom)
         bt.setImage(UIImage(named: "icon_favorite"), for: .normal)
         bt.setImage(UIImage(named: "icon_favorite_active"), for: .highlighted)
@@ -112,13 +112,13 @@ final class ALKChatCell: MGSwipeTableCell {
     }()
 
     // MARK: BadgeNumber
-    private lazy var badgeNumberView: UIView = {
+    open lazy var badgeNumberView: UIView = {
         let view = UIView(frame: .zero)
         view.setBackgroundColor(.background(.main))
         return view
     }()
 
-    private lazy var badgeNumberLabel: UILabel = {
+    open lazy var badgeNumberLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.text = "0"
         label.textAlignment = .center
@@ -136,7 +136,7 @@ final class ALKChatCell: MGSwipeTableCell {
         return label
     }()
 
-    private var timeLabel: UILabel = {
+    open var timeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
         label.numberOfLines = 1
@@ -153,13 +153,13 @@ final class ALKChatCell: MGSwipeTableCell {
         return label
     }()
 
-    private var onlineStatusView: UIView = {
+    open var onlineStatusView: UIView = {
         let view = UIView(frame: .zero)
         view.backgroundColor = UIColor.onlineGreen()
         return view
     }()
 
-    private var avatarName: UILabel = {
+    open var avatarName: UILabel = {
         let label = UILabel()
         label.backgroundColor = UIColor.gray
         label.layer.cornerRadius = 22.5
@@ -228,7 +228,7 @@ final class ALKChatCell: MGSwipeTableCell {
         badgeNumberView.setBackgroundColor(.background(.main))
     }
     
-    private func isConversationMuted(viewModel: ALKChatViewModelProtocol) -> Bool{
+    open func isConversationMuted(viewModel: ALKChatViewModelProtocol) -> Bool{
         if let channelKey = viewModel.channelKey,
             let channel = ALChannelService().getChannelByKey(channelKey){
             if channel.isNotificationMuted() {
