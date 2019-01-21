@@ -127,7 +127,7 @@ open class ALKConversationViewController: ALKBaseViewController, Localizable {
         return button
     }()
 
-    open var backgroundView: UIView = {
+    lazy open var backgroundView: UIView = {
         let view = UIView(frame: CGRect.zero)
         view.backgroundColor = UIColor.white
         
