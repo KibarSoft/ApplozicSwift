@@ -60,11 +60,31 @@ open class ALKChatCell: MGSwipeTableCell {
         label.numberOfLines = 1
         //label.font = Font.bold(size: 14.0).font()
         
-        //Kibarsoft
+        //Kibarsoft - custom font with another size
         if let _ = ALApplozicSettings.getFontFace() {
-            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 14.0)!)
+            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 13.0)!)
         } else {
-            label.font = Font.bold(size: 14.0).font()
+            label.font = Font.bold(size: 13.0).font()
+        }
+        
+        label.textColor = .text(.black00)
+        return label
+    }()
+    
+    //Kibarsoft
+    //Since avatarName is shown inside the imageview, and only when no image available ist,
+    //This label displays partner name
+    open var partnerNameLabel: UILabel = {
+        let label = UILabel()
+        label.lineBreakMode = .byTruncatingTail
+        label.numberOfLines = 1
+        //label.font = Font.bold(size: 14.0).font()
+        
+        //Kibarsoft - custom font with another size
+        if let _ = ALApplozicSettings.getFontFace() {
+            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 13.0)!)
+        } else {
+            label.font = Font.bold(size: 13.0).font()
         }
         
         label.textColor = .text(.black00)
@@ -76,11 +96,12 @@ open class ALKChatCell: MGSwipeTableCell {
         label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 1
         //label.font = Font.normal(size: 14.0).font()
-        //Kibarsoft
+        
+        //Kibarsoft - custom font with another size
         if let _ = ALApplozicSettings.getFontFace() {
-            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 14.0)!)
+            label.setFont(UIFont(name: ALApplozicSettings.getFontFace()!, size: 12.0)!)
         } else {
-            label.font = Font.normal(size: 14.0).font()
+            label.font = Font.normal(size: 12.0).font()
         }
         
         label.textColor = UIColor(netHex: 0x9B9B9B)
@@ -202,11 +223,13 @@ open class ALKChatCell: MGSwipeTableCell {
             return
         }
 
+        //Kibarsoft: These fields are set on project extension of chat component. Stop setting them internally
+        /*
         lineView.backgroundColor = UIColor(netHex: 0xF1F1F1)
-
         backgroundColor = highlighted ? UIColor.init(netHex: 0xECECEC) : UIColor.white
         contentView.backgroundColor = backgroundColor
-
+         */
+        
         // set backgroundColor of badgeNumber
         badgeNumberView.setBackgroundColor(.background(.main))
     }
@@ -218,12 +241,13 @@ open class ALKChatCell: MGSwipeTableCell {
             return
         }
 
-
+        //Kibarsoft: These fields are set on project extension of chat component. Stop setting them internally
+        /*
         lineView.backgroundColor = UIColor(netHex: 0xF1F1F1)
-
         backgroundColor = selected ? UIColor.init(netHex: 0xECECEC) : UIColor.white
         contentView.backgroundColor = backgroundColor
-
+         */
+        
         // set backgroundColor of badgeNumber
         badgeNumberView.setBackgroundColor(.background(.main))
     }
@@ -249,7 +273,7 @@ open class ALKChatCell: MGSwipeTableCell {
         }
     }
     
-    var viewModel: ALKChatViewModelProtocol?
+    open var viewModel: ALKChatViewModelProtocol?
 
     func update(viewModel: ALKChatViewModelProtocol, identity: ALKIdentityProtocol?) {
 
@@ -360,8 +384,17 @@ open class ALKChatCell: MGSwipeTableCell {
 
     private func setupConstraints() {
 
-        contentView.addViewsForAutolayout(views: [avatarImageView, nameLabel, locationLabel,lineView,voipButton,/*favoriteButton,*/avatarName,badgeNumberView, timeLabel, onlineStatusView])
+        //contentView.addViewsForAutolayout(views: [avatarImageView, nameLabel, locationLabel,lineView,voipButton,/*favoriteButton,*/avatarName,badgeNumberView, timeLabel, onlineStatusView])
 
+        //Kibarsoft
+        contentView.addViewsForAutolayout(views: [avatarImageView, nameLabel, partnerNameLabel, locationLabel,lineView,voipButton,/*favoriteButton,*/avatarName,badgeNumberView, timeLabel, onlineStatusView])
+
+        
+        //Kibarsoft
+        let nameLabelHeight:        CGFloat = 18.0
+        let partnerNameLabelHeight: CGFloat = 12.0
+        let locationLabelHeight:    CGFloat = 10.0
+        
         // setup constraint of imageProfile
         avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 17.0).isActive = true
         avatarImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15.0).isActive = true
@@ -370,13 +403,22 @@ open class ALKChatCell: MGSwipeTableCell {
 
         // setup constraint of name
         nameLabel.topAnchor.constraint(equalTo: avatarImageView.topAnchor, constant: 2).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        //nameLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        nameLabel.heightAnchor.constraint(equalToConstant: nameLabelHeight).isActive = true  //Kibarsoft
         nameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 12).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: timeLabel.leadingAnchor, constant: -5).isActive = true
 
+        // setup constraint of partner name
+        partnerNameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2).isActive = true
+        partnerNameLabel.heightAnchor.constraint(equalToConstant: partnerNameLabelHeight).isActive = true  //Kibarsoft
+        partnerNameLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 12).isActive = true
+        partnerNameLabel.trailingAnchor.constraint(equalTo: voipButton.leadingAnchor, constant: -19).isActive = true
+        
         // setup constraint of mood
-        locationLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2).isActive = true
-        locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        //locationLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 2).isActive = true
+        locationLabel.topAnchor.constraint(equalTo: partnerNameLabel.bottomAnchor, constant: 2).isActive = true  //Kibarsoft
+        //locationLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        locationLabel.heightAnchor.constraint(equalToConstant: locationLabelHeight).isActive = true  //Kibarsoft
         locationLabel.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: 12).isActive = true
         locationLabel.trailingAnchor.constraint(equalTo: voipButton.leadingAnchor, constant: -19).isActive = true
 
