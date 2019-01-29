@@ -62,14 +62,21 @@ class ALKCustomPickerViewController: ALKBaseViewController, Localizable {
     //MARK: - UI control
     private func setupNavigation() {
         self.navigationController?.title = title
-        self.navigationController?.navigationBar.backgroundColor = UIColor.white
+        
+        //Kibarsoft
+        //self.navigationController?.navigationBar.backgroundColor = UIColor.white
+        self.navigationController?.navigationBar.backgroundColor = configuration.navigationBarBackgroundColor
+        
+        
         guard let navVC = self.navigationController else {return}
         navVC.navigationBar.shadowImage = UIImage()
         navVC.navigationBar.isTranslucent = true
         var backImage = UIImage.init(named: "icon_back", in: Bundle.applozic, compatibleWith: nil)
         backImage = backImage?.imageFlippedForRightToLeftLayoutDirection()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(image: backImage, style: .plain, target: self , action: #selector(dismissAction(_:)))
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        //Kibarsoft
+        //self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.tintColor = configuration.navigationBarItemColor
 
     }
 

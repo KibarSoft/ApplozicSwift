@@ -82,8 +82,13 @@ final class ALKCustomCameraPreviewViewController: ALKBaseViewController, Localiz
     private func setupNavigation() {
         self.navigationItem.title = title
         
-        self.navigationController?.navigationBar.backgroundColor = UIColor.white
-        self.navigationController?.navigationBar.tintColor = UIColor.black
+        //Kibarsoft
+        //self.navigationController?.navigationBar.backgroundColor = UIColor.white
+        //self.navigationController?.navigationBar.tintColor = UIColor.black
+        
+        self.navigationController?.navigationBar.backgroundColor = configuration.navigationBarBackgroundColor
+        self.navigationController?.navigationBar.tintColor = configuration.navigationBarItemColor
+        
         guard let navVC = self.navigationController else {return}
         navVC.navigationBar.shadowImage = UIImage()
         navVC.navigationBar.isTranslucent = true

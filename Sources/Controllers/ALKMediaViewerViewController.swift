@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import AVKit
+import Applozic
 
 final class ALKMediaViewerViewController: UIViewController {
 
@@ -70,7 +71,14 @@ final class ALKMediaViewerViewController: UIViewController {
 
 
     private func setupNavigation() {
-        self.navigationController?.navigationBar.backgroundColor = UIColor.white
+        
+        
+        //self.navigationController?.navigationBar.backgroundColor = UIColor.white
+        
+        //Kibarsoft
+        self.navigationController?.navigationBar.backgroundColor = ALApplozicSettings.getColorForNavigation()
+        self.navigationController?.navigationBar.tintColor = ALApplozicSettings.getColorForNavigationItem()
+        
         guard let navVC = self.navigationController else {return}
         navVC.navigationBar.shadowImage = UIImage()
         navVC.navigationBar.isTranslucent = true

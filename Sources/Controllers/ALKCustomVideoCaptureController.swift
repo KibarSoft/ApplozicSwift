@@ -119,7 +119,12 @@ final class ALKCustomVideoViewController: ALKBaseViewController, Localizable {
     //MARK: - UI control
     private func setupNavigation() {
         self.navigationController?.title = title
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: .main, alpha: 0.6), for: .default)
+        
+        //Kibarsoft
+        //self.navigationController?.navigationBar.setBackgroundImage(UIImage(color: .main, alpha: 0.6), for: .default)
+        self.navigationController?.navigationBar.backgroundColor = configuration.navigationBarBackgroundColor
+        self.navigationController?.navigationBar.tintColor = configuration.navigationBarItemColor
+        
         guard let navVC = self.navigationController else {return}
         navVC.navigationBar.shadowImage = UIImage()
         navVC.navigationBar.isTranslucent = true

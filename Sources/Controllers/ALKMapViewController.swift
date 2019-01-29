@@ -32,6 +32,21 @@ class ALKMapViewController: UIViewController, Localizable {
         let locationButtonTitle = localizedString(forKey: "SendLocationButton", withDefaultValue: SystemMessage.Map.SendLocationButton, fileName: configuration.localizedStringFileName)
         ShareLocationButton.setTitle(locationButtonTitle, for: UIControlState.normal)
         ShareLocationButton.setTitle(locationButtonTitle, for: UIControlState.selected)
+        
+        //Kibarsoft
+        guard let _ = self.navigationController else { return}
+        self.navigationController?.navigationBar.backgroundColor = configuration.navigationBarBackgroundColor
+        self.navigationController?.navigationBar.tintColor = configuration.navigationBarItemColor
+        
+        //to affect the close button
+        if let _ = self.navigationItem.leftBarButtonItem {
+            self.navigationItem.leftBarButtonItem?.tintColor = configuration.navigationBarItemColor
+        }
+        
+        if let _ = self.navigationItem.rightBarButtonItem {
+            self.navigationItem.leftBarButtonItem?.tintColor = configuration.navigationBarItemColor
+        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
